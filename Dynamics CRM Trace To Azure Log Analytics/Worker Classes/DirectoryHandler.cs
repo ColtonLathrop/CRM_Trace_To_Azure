@@ -22,6 +22,12 @@ namespace Dynamics_CRM_Trace_To_Azure_Log_Analytics
             return Directory.GetFiles(directory);
         }
 
+        /// <summary>
+        /// Verifies trace directory specified exists, then parses the directory for a string list and converts them to FileInfo Objects.
+        /// </summary>
+        /// <returns>
+        /// List of FileInfo objects in trace directory.
+        /// </returns>
         private List<FileInfo> BuildFileObjects(string directory)
         {
             if (VerifyTraceDirectory(directory) != true)
@@ -40,6 +46,12 @@ namespace Dynamics_CRM_Trace_To_Azure_Log_Analytics
             }
         }
 
+        /// <summary>
+        /// Takes an input list of FileInfo objects and sorts them only keeping the oldest in the list.
+        /// </summary>
+        /// <returns>
+        /// List of 5 FileInfo objects that are the oldest from the input.
+        /// </returns>
         private List<FileInfo> SortFiles(List<FileInfo> files)
         {
             List<FileInfo> sorted = new List<FileInfo>(5);
@@ -66,6 +78,12 @@ namespace Dynamics_CRM_Trace_To_Azure_Log_Analytics
             return sorted;
         }
 
+        /// <summary>
+        /// Calls the method to build the FileInfo list then sorts and returns the FileInfo list containing the 5 oldest from the directory.
+        /// </summary>
+        /// <returns>
+        /// List of 5 FileInfo objects that are the oldest from the specified trace directory.
+        /// </returns>
         private List<FileInfo> PullFive()
         {
             List<FileInfo> files = BuildFileObjects(_directory);
